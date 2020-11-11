@@ -6,9 +6,6 @@ Provider  = "DiskBP"
 DriverVer = 1.0.0.0
 CatalogFile="DiskBP.cat"
 
-;
-; General installation section
-;
 
 [DefaultInstall.NT]
 CopyFiles = @DiskBP.sys
@@ -21,9 +18,6 @@ DefaultDestDir = 12
 HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00010008, DiskBP
 
 
-;
-; Service installation section
-;
 
 [DefaultInstall.NT.Services]
 AddService = DiskBP, , DiskBP.Service.Install
