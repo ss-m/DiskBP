@@ -34,7 +34,6 @@ void SendMessageToUser(unsigned long Action , unsigned long long Location , unsi
 	Message->Action = Action;
 	Message->Location = Location;
 	Message->Size = Size;
-	//PushEntryList(&gAsyncNotifyListHead, &(Msg->SingleListEntry));
 	ExInterlockedPushEntryList(&gUMNotificationList, &(Message->SingleListEntry), &gUMNotificationListSpinLock);
 	//
 	__try
