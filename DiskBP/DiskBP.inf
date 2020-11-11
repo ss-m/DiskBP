@@ -1,0 +1,50 @@
+; diskperf.inf
+;
+; Installation inf for the Disk Performance Monitor Filter driver [ DDK Sample ]
+;
+; Copyright (c) Microsoft Corporation
+;
+
+[Version]
+Signature = "$Windows NT$"
+Class     = DiskDrive
+ClassGUID = {4d36e967-e325-11ce-bfc1-08002be10318}
+Provider  = "DiskBP"
+DriverVer = 1.0.0.0
+CatalogFile="DiskBP.cat"
+
+;
+; General installation section
+;
+
+[DefaultInstall.NT]
+CopyFiles = @DiskBP.sys
+Addreg    = DiskBP.AddReg
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[DiskBP.AddReg]
+HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00010008, DiskBP
+
+
+;
+; Service installation section
+;
+
+[DefaultInstall.NT.Services]
+AddService = DiskBP, , DiskBP.Service.Install
+
+[DiskBP.Service.Install]
+DisplayName    = "DiskBP"
+ServiceType    = 1
+StartType      = 0
+ErrorControl   = 1
+ServiceBinary  = %12%\DiskBP.sys
+
+[SourceDisksFiles]
+DiskBP.sys=1
+
+
+[SourceDisksNames]
+1 = "Installion Dir",,,
